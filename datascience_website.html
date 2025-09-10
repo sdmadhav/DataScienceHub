@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataScienceHub - Advanced AI & Machine Learning Resources</title>
+    <meta name="description" content="Comprehensive resource hub for Data Science, Machine Learning, NLP, and AI. Expert tutorials, tools, and insights for professionals and researchers.">
+    <meta name="keywords" content="data science, machine learning, NLP, AI, deep learning, neural networks, python, tutorials, research">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DataScienceHub - Advanced AI & ML Resources">
+    <meta property="og:description" content="Your ultimate destination for cutting-edge data science knowledge">
+    <meta property="og:type" content="website">
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DataScienceHub",
+        "description": "Advanced AI & Machine Learning Resource Platform",
+        "url": "https://datasciencehub.com"
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            z-index: 100;
+        }
+        
+        .categories {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            border-color: #667eea;
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .category-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .category-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .category-link:hover {
+            gap: 1rem;
+        }
+        
+        /* Featured Content */
+        .featured {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+        
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .featured-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .featured-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        
+        .featured-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .featured-content {
+            padding: 1.5rem;
+        }
+        
+        .featured-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .featured-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Tools Section */
+        .tools {
+            padding: 80px 0;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tool-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9ff 100%);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+        
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Admin Panel Styles */
+        .admin-panel {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 1rem;
+            display: none;
+            z-index: 1001;
+        }
+        
+        .admin-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+        
+        .admin-button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">DataScienceHub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#tutorials">Tutorials</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Advanced AI & Data Science Hub</h1>
+            <p>Master Machine Learning, NLP, and AI with cutting-edge tutorials, tools, and research insights</p>
+            <a href="#tutorials" class="cta-button">Start Learning</a>
+        </div>
+    </section>
+
+    <main>
+        <section class="categories" id="tutorials">
+            <div class="container">
+                <h2 class="section-title">Explore Core Topics</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="navigateToCategory('machine-learning')">
+                        <div class="category-icon">🤖</div>
+                        <h3>Machine Learning</h3>
+                        <p>From basics to advanced algorithms. Supervised, unsupervised, and reinforcement learning with practical implementations.</p>
+                        <a href="ml.html" class="category-link">Explore ML →</a>
+                    </div>
+                    
+                    <div class="category-card" onclick="navigateToCategory('nlp')">
+                        <div class="category-icon">💬</div>
+                        <h3>Natural Language Processing</h3>
+                        <p>Master text analysis, sentiment analysis, transformers, BERT, GPT, and modern language models.</p>
+                        <a href="nlp.html" class="category-link">Dive into NLP →</a>
+                    </div>
+                    
+                    <div class="category-card" onclick="navigateToCategory('deep-learning')">
+                        <div class="category-icon">🧠</div>
+                        <h3>Deep Learning</h3>
+                        <p>Neural networks, CNNs, RNNs, transformers, and cutting-edge architectures with TensorFlow and PyTorch.</p>
+                        <a href="dl.html" class="category-link">Learn Deep Learning →</a>
+                    </div>
+                    
+                    <div class="category-card" onclick="navigateToCategory('rag-systems')">
+                        <div class="category-icon">🔍</div>
+                        <h3>RAG Systems</h3>
+                        <p>Retrieval-Augmented Generation, vector databases, embedding techniques, and information retrieval systems.</p>
+                        <a href="#" class="category-link">Build RAG Systems →</a>
+                    </div>
+                    
+                    <div class="category-card" onclick="navigateToCategory('agentic-ai')">
+                        <div class="category-icon">🎯</div>
+                        <h3>Agentic AI</h3>
+                        <p>Multi-agent systems, autonomous AI agents, planning algorithms, and intelligent automation frameworks.</p>
+                        <a href="#" class="category-link">Create AI Agents →</a>
+                    </div>
+                    
+                    <div class="category-card" onclick="navigateToCategory('data-analysis')">
+                        <div class="category-icon">📊</div>
+                        <h3>Data Analysis</h3>
+                        <p>Statistical analysis, data visualization, pandas, numpy, and advanced analytics techniques.</p>
+                        <a href="#" class="category-link">Analyze Data →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured">
+            <div class="container">
+                <h2 class="section-title">Featured Content</h2>
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <div class="featured-image">📚</div>
+                        <div class="featured-content">
+                            <h4>Latest Tutorial: Building LLM Applications</h4>
+                            <p>Step-by-step guide to creating production-ready LLM applications with practical examples.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-card">
+                        <div class="featured-image">🔧</div>
+                        <div class="featured-content">
+                            <h4>New Tool: AI Model Comparator</h4>
+                            <p>Interactive tool to compare different AI models' performance on various benchmarks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="featured-card">
+                        <div class="featured-image">📰</div>
+                        <div class="featured-content">
+                            <h4>Research Paper: Multi-Modal AI</h4>
+                            <p>Latest research insights on combining vision, language, and audio in AI systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools" id="tools">
+            <div class="container">
+                <h2 class="section-title">Interactive Tools</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <div class="tool-icon">⚡</div>
+                        <h4>Model Playground</h4>
+                        <p>Test and compare ML models</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">📝</div>
+                        <h4>Text Analyzer</h4>
+                        <p>NLP tools for text analysis</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">📈</div>
+                        <h4>Data Visualizer</h4>
+                        <p>Create stunning visualizations</p>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">🎨</div>
+                        <h4>Neural Net Designer</h4>
+                        <p>Visual neural network builder</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Machine Learning</a></li>
+                        <li><a href="#">Deep Learning</a></li>
+                        <li><a href="#">Natural Language Processing</a></li>
+                        <li><a href="#">Computer Vision</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Datasets</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#">Model Playground</a></li>
+                        <li><a href="#">Text Analyzer</a></li>
+                        <li><a href="#">Data Visualizer</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 DataScienceHub. All rights reserved. | Empowering the next generation of AI professionals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Panel -->
+    <div class="admin-panel" id="adminPanel">
+        <h4>Content Management</h4>
+        <button class="admin-button" onclick="addNewPost()">Add New Post</button>
+        <button class="admin-button" onclick="manageCategories()">Manage Categories</button>
+        <button class="admin-button" onclick="viewAnalytics()">View Analytics</button>
+        <button class="admin-button" onclick="seoOptimizer()">SEO Tools</button>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Category navigation
+        function navigateToCategory(category) {
+            // This would typically navigate to category pages
+            console.log(`Navigating to ${category} category`);
+            // For now, show an alert
+            // alert(`This will navigate to the ${category.replace('-', ' ')} section. Each category will have its own dedicated page with tutorials, examples, and tools.`);
+        }
+
+
+        // Initialize Google AdSense (placeholder)
+        function initializeAds() {
+            // AdSense integration code would go here
+            console.log("Initializing Google AdSense...");
+        }
+
+        // Call initialization functions
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAds();
+            console.log("DataScienceHub initialized successfully!");
+        });
+    </script>
+
+    <!-- Google AdSense placeholder -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXX"></script>
+</body>
+</html>

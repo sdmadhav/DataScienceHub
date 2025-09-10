@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning Hub - Complete Learning Path | DataScienceHub</title>
+    <meta name="description"
+        content="Master Machine Learning from basics to advanced algorithms. Comprehensive tutorials on supervised, unsupervised, and reinforcement learning with practical Python implementations.">
+    <meta name="keywords"
+        content="machine learning, supervised learning, unsupervised learning, reinforcement learning, python, scikit-learn, tensorflow, pytorch, algorithms">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Machine Learning Hub - Complete Learning Path">
+    <meta property="og:description"
+        content="Master ML algorithms with hands-on tutorials and practical implementations">
+    <meta property="og:type" content="article">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Machine Learning Complete Guide",
+        "description": "Comprehensive machine learning course from basics to advanced topics",
+        "provider": {
+            "@type": "Organization",
+            "name": "DataScienceHub"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            z-index: 100;
+            padding-top: 80px;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .path-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .path-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .path-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .path-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .path-content {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .path-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .path-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .path-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .topics-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topics-list li {
+            background: #f8f9ff;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .lesson-count {
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Quick Access Tools */
+        .quick-tools {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .tool-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Recent Posts */
+        .recent-posts {
+            padding: 80px 0;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .post-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .post-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+/* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .path-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .path-content {
+                margin: 1rem 0;
+            }
+
+            .path-icon {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin: 1rem auto;
+            }
+
+            .path-line {
+                display: none;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">DataScienceHub</div>
+            <div class="breadcrumb">
+                <a href="datascience_website.html">Home</a>
+                <span>›</span>
+                <span>Machine Learning</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Machine Learning Mastery</h1>
+            <p>Complete learning path from fundamentals to advanced algorithms. Master supervised, unsupervised, and
+                reinforcement learning with hands-on Python implementations.</p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Tutorials</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Code Examples</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="learning-path">
+            <div class="container">
+                <h2 class="section-title">Learning Path</h2>
+                <p class="section-subtitle">Follow this structured path to master machine learning from basics to
+                    advanced topics</p>
+
+                <div class="path-container">
+                    <div class="path-line"></div>
+
+                    <div class="path-item fade-in stagger-1">
+                        <div class="path-content" onclick="expandSection('foundations')">
+                            <span class="level-badge">Beginner</span>
+                            <h3>ML Foundations</h3>
+                            <p>Start with the fundamentals of machine learning, understand key concepts, and set up your
+                                development environment.</p>
+                            <ul class="topics-list">
+                                <li>What is ML?</li>
+                                <li>Types of Learning</li>
+                                <li>Python Setup</li>
+                                <li>Data Preprocessing</li>
+                                <li>Evaluation Metrics</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>8 Lessons</span>
+                                <span>✅ Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-2">
+                        <div class="path-content" onclick="expandSection('supervised')">
+                            <span class="level-badge">Intermediate</span>
+                            <h3>Supervised Learning</h3>
+                            <p>Master classification and regression algorithms with practical implementations and
+                                real-world projects.</p>
+                            <ul class="topics-list">
+                                <li>Linear Regression</li>
+                                <li>Logistic Regression</li>
+                                <li>Decision Trees</li>
+                                <li>Random Forest</li>
+                                <li>SVM</li>
+                                <li>Neural Networks</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>12 Lessons</span>
+                                <span>9/12 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-3">
+                        <div class="path-content" onclick="expandSection('unsupervised')">
+                            <span class="level-badge">Intermediate</span>
+                            <h3>Unsupervised Learning</h3>
+                            <p>Discover hidden patterns in data through clustering, dimensionality reduction, and
+                                anomaly detection.</p>
+                            <ul class="topics-list">
+                                <li>K-Means</li>
+                                <li>Hierarchical Clustering</li>
+                                <li>PCA</li>
+                                <li>t-SNE</li>
+                                <li>DBSCAN</li>
+                                <li>Anomaly Detection</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>10 Lessons</span>
+                                <span>4/10 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-4">
+                        <div class="path-content" onclick="expandSection('reinforcement')">
+                            <span class="level-badge">Advanced</span>
+                            <h3>Reinforcement Learning</h3>
+                            <p>Build intelligent agents that learn through interaction with environments using
+                                reward-based learning.</p>
+                            <ul class="topics-list">
+                                <li>Q-Learning</li>
+                                <li>Policy Gradients</li>
+                                <li>Actor-Critic</li>
+                                <li>Deep Q-Networks</li>
+                                <li>Multi-Agent RL</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>15 Lessons</span>
+                                <span>3/15 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-5">
+                        <div class="path-content" onclick="expandSection('advanced')">
+                            <span class="level-badge">Expert</span>
+                            <h3>Advanced Topics</h3>
+                            <p>Explore cutting-edge ML techniques, model optimization, and deployment strategies for
+                                production systems.</p>
+                            <ul class="topics-list">
+                                <li>Ensemble Methods</li>
+                                <li>Hyperparameter Tuning</li>
+                                <li>MLOps</li>
+                                <li>Model Interpretability</li>
+                                <li>AutoML</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>20 Lessons</span>
+                                <span>0/20 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-tools">
+            <div class="container">
+                <h2 class="section-title">Interactive Tools</h2>
+                <p class="section-subtitle">Hands-on tools to experiment and learn machine learning concepts</p>
+
+                <div class="tools-grid">
+                    <div class="tool-card fade-in stagger-1">
+                        <div class="tool-icon">🧪</div>
+                        <h4>Algorithm Playground</h4>
+                        <p>Interactive visualizations of ML algorithms in action. See how different algorithms work with
+                            your data.</p>
+                        <button class="tool-button" onclick="openTool('playground')">Try Now</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-2">
+                        <div class="tool-icon">📈</div>
+                        <h4>Model Comparator</h4>
+                        <p>Compare performance of different ML models side-by-side with comprehensive metrics and
+                            visualizations.</p>
+                        <button class="tool-button" onclick="openTool('comparator')">Compare Models</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-3">
+                        <div class="tool-icon">🎯</div>
+                        <h4>Hyperparameter Tuner</h4>
+                        <p>Automated hyperparameter optimization with grid search, random search, and Bayesian
+                            optimization.</p>
+                        <button class="tool-button" onclick="openTool('tuner')">Optimize</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-4">
+                        <div class="tool-icon">📊</div>
+                        <h4>Data Preprocessor</h4>
+                        <p>Clean, transform, and prepare your datasets with automated preprocessing pipelines.</p>
+                        <button class="tool-button" onclick="openTool('preprocessor')">Process Data</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-posts">
+            <div class="container">
+                <h2 class="section-title">Latest Tutorials</h2>
+                <p class="section-subtitle">Stay updated with the newest machine learning tutorials and insights</p>
+
+                <div class="posts-grid">
+                    <div class="post-card fade-in stagger-1">
+                        <div class="post-image">
+                            🤖
+                            <div class="post-badge">New</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Complete Guide to Random Forest in Python</h4>
+                            <p>Learn how to implement and optimize Random Forest algorithms with practical examples and
+                                performance tuning techniques.</p>
+                            <div class="post-meta">
+                                <span>Dec 15, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>12 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-card fade-in stagger-2">
+                        <div class="post-image">
+                            📊
+                            <div class="post-badge">Popular</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Feature Engineering Masterclass</h4>
+                            <p>Advanced techniques for creating meaningful features that boost your model's performance
+                                significantly.</p>
+                            <div class="post-meta">
+                                <span>Dec 10, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>18 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-card fade-in stagger-3">
+                        <div class="post-image">
+                            🎯
+                            <div class="post-badge">Tutorial</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Building Your First ML Pipeline</h4>
+                            <p>Step-by-step guide to creating robust machine learning pipelines with scikit-learn and
+                                best practices.</p>
+                            <div class="post-meta">
+                                <span>Dec 5, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>15 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Machine Learning</a></li>
+                        <li><a href="#">Deep Learning</a></li>
+                        <li><a href="#">Natural Language Processing</a></li>
+                        <li><a href="#">Computer Vision</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Datasets</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#">Model Playground</a></li>
+                        <li><a href="#">Text Analyzer</a></li>
+                        <li><a href="#">Data Visualizer</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 DataScienceHub. All rights reserved. | Empowering the next generation of AI
+                    professionals.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Trigger animations when elements come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+
+        // Section expansion functionality
+        function expandSection(sectionType) {
+            const sections = {
+                'foundations': {
+                    title: 'ML Foundations',
+                    lessons: [
+                        'Introduction to Machine Learning',
+                        'Types of Machine Learning',
+                        'Setting Up Python Environment',
+                        'Data Collection and Quality',
+                        'Exploratory Data Analysis',
+                        'Data Preprocessing Techniques',
+                        'Feature Selection Methods',
+                        'Model Evaluation Metrics'
+                    ]
+                },
+                'supervised': {
+                    title: 'Supervised Learning',
+                    lessons: [
+                        'Linear Regression from Scratch',
+                        'Multiple Linear Regression',
+                        'Logistic Regression Implementation',
+                        'Decision Trees Deep Dive',
+                        'Random Forest Ensemble',
+                        'Support Vector Machines',
+                        'Naive Bayes Classifier',
+                        'k-Nearest Neighbors',
+                        'Neural Networks Basics',
+                        'Cross-Validation Techniques',
+                        'Bias-Variance Tradeoff',
+                        'Model Selection Strategies'
+                    ]
+                },
+                'unsupervised': {
+                    title: 'Unsupervised Learning',
+                    lessons: [
+                        'K-Means Clustering',
+                        'Hierarchical Clustering',
+                        'Principal Component Analysis',
+                        't-SNE Visualization',
+                        'DBSCAN Clustering',
+                        'Gaussian Mixture Models',
+                        'Association Rules Mining',
+                        'Anomaly Detection Methods',
+                        'Dimensionality Reduction',
+                        'Clustering Evaluation'
+                    ]
+                },
+                'reinforcement': {
+                    title: 'Reinforcement Learning',
+                    lessons: [
+                        'RL Fundamentals',
+                        'Markov Decision Processes',
+                        'Q-Learning Algorithm',
+                        'Deep Q-Networks (DQN)',
+                        'Policy Gradient Methods',
+                        'Actor-Critic Methods',
+                        'Multi-Armed Bandits',
+                        'Temporal Difference Learning',
+                        'Monte Carlo Methods',
+                        'Function Approximation',
+                        'Exploration vs Exploitation',
+                        'Multi-Agent Reinforcement Learning',
+                        'Real-World RL Applications',
+                        'RL in Game AI',
+                        'Continuous Action Spaces'
+                    ]
+                },
+                'advanced': {
+                    title: 'Advanced Topics',
+                    lessons: [
+                        'Ensemble Learning Methods',
+                        'Bagging and Boosting',
+                        'XGBoost Implementation',
+                        'Hyperparameter Optimization',
+                        'Automated Machine Learning',
+                        'Model Interpretability',
+                        'SHAP Values Explained',
+                        'ML Model Deployment',
+                        'MLOps Best Practices',
+                        'Model Monitoring',
+                        'A/B Testing for ML',
+                        'Federated Learning',
+                        'Transfer Learning',
+                        'Meta-Learning',
+                        'Continual Learning',
+                        'Adversarial ML',
+                        'Fairness in ML',
+                        'Privacy-Preserving ML',
+                        'Edge ML Deployment',
+                        'ML System Design'
+                    ]
+                }
+            };
+
+            const section = sections[sectionType];
+            if (section) {
+                // Create modal content
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                    background: rgba(0,0,0,0.8); z-index: 2000; display: flex; 
+                    align-items: center; justify-content: center; backdrop-filter: blur(5px);
+                `;
+
+                const modalContent = document.createElement('div');
+                modalContent.style.cssText = `
+                    background: white; border-radius: 20px; max-width: 600px; 
+                    max-height: 80vh; overflow-y: auto; padding: 2rem; margin: 1rem;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                `;
+
+                modalContent.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.8rem; color: #333; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${section.title}</h3>
+                        
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="color: #666; margin-bottom: 1rem;">Complete lesson breakdown:</p>
+                        <div style="max-height: 300px; overflow-y: auto;">
+                            ${section.lessons.map((lesson, index) => `
+                                <div style="display: flex; align-items: center; padding: 0.8rem; margin-bottom: 0.5rem; background: #f8f9ff; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;" 
+                                     onmouseover="this.style.background='#e9ecff'" 
+                                     onmouseout="this.style.background='#f8f9ff'"
+                                     onclick="startLesson('${sectionType}', ${index})">
+                                    <span style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-right: 1rem;">${index + 1}</span>
+                                    <span style="color: #333; flex: 1;">${lesson}</span>
+                                    <span style="color: #999; font-size: 0.9rem;">📖</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button onclick="startSection('${sectionType}')" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-right: 1rem;">Start Section</button>
+                        <button onclick="this.closest('.modal').remove()" style="background: transparent; color: #667eea; border: 2px solid #667eea; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Close</button>
+                    </div>
+                `;
+
+                modal.className = 'modal';
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+
+                // Close modal on backdrop click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+        }
+
+        // Tool functionality
+        function openTool(toolType) {
+            const tools = {
+                'playground': {
+                    title: 'Algorithm Playground',
+                    description: 'Interactive ML algorithm visualizations',
+                    url: '#playground'
+                },
+                'comparator': {
+                    title: 'Model Comparator',
+                    description: 'Compare multiple ML models',
+                    url: '#comparator'
+                },
+                'tuner': {
+                    title: 'Hyperparameter Tuner',
+                    description: 'Optimize model parameters',
+                    url: '#tuner'
+                },
+                'preprocessor': {
+                    title: 'Data Preprocessor',
+                    description: 'Clean and transform data',
+                    url: '#preprocessor'
+                }
+            };
+
+            const tool = tools[toolType];
+            if (tool) {
+                // Simulate tool opening with animation
+                const button = event.target;
+                button.style.transform = 'scale(0.95)';
+                button.textContent = 'Loading...';
+
+                setTimeout(() => {
+                    button.style.transform = 'scale(1)';
+                    button.textContent = 'Opened!';
+                    setTimeout(() => {
+                        button.textContent = 'Try Now';
+                    }, 1000);
+
+                    // Show success message
+                    showNotification(`${tool.title} opened successfully!`, 'success');
+                }, 500);
+            }
+        }
+
+        // Start lesson functionality
+        function startLesson(sectionType, lessonIndex) {
+            showNotification(`Starting lesson ${lessonIndex + 1} in ${sectionType} section...`, 'info');
+
+            // Close modal
+            document.querySelector('.modal')?.remove();
+
+            // Simulate lesson start
+            setTimeout(() => {
+                showNotification('Lesson loaded! Ready to begin.', 'success');
+            }, 1000);
+        }
+
+        // Start section functionality
+        function startSection(sectionType) {
+            showNotification(`Starting ${sectionType} section from the beginning...`, 'info');
+
+            // Close modal
+            document.querySelector('.modal')?.remove();
+
+            // Update progress (simulate)
+            setTimeout(() => {
+                showNotification('Section started! Check your progress above.', 'success');
+            }, 1000);
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 3000;
+                background: ${type === 'success' ? 'linear-gradient(45deg, #4CAF50, #45a049)' :
+                    type === 'error' ? 'linear-gradient(45deg, #f44336, #da190b)' :
+                        'linear-gradient(45deg, #667eea, #764ba2)'};
+                color: white; padding: 1rem 1.5rem; border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                transform: translateX(100%); transition: all 0.5s ease;
+                max-width: 300px; font-weight: 500;
+            `;
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 3000);
+        }
+
+        // Smooth scrolling for internal links
+        document.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Progress bar animation on scroll
+        window.addEventListener('scroll', function () {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    bar.style.transition = 'width 2s ease';
+                }
+            });
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.path-content, .tool-card, .post-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = this.classList.contains('path-content') ? 'translateY(-5px)' :
+                    this.classList.contains('tool-card') ? 'translateY(-10px)' : 'translateY(-5px)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>

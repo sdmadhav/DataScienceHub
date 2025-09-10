@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Master NLP from text processing to transformers. Learn sentiment analysis, BERT, GPT, and modern language models with practical Python implementations.">
+    <meta name="keywords"
+        content="natural language processing, NLP, transformers, BERT, GPT, sentiment analysis, text mining, language models, spacy, nltk">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Natural Language Processing - Complete Learning Path">
+    <meta property="og:description"
+        content="Master NLP techniques from text processing to modern transformers and language models">
+    <meta property="og:type" content="article">
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "Natural Language Processing Complete Guide",
+        "description": "Comprehensive NLP course from text basics to advanced language models",
+        "provider": {
+            "@type": "Organization",
+            "name": "DataScienceHub"
+        }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Main Content */
+        main {
+            background: white;
+            margin-top: -50px;
+            border-radius: 50px 50px 0 0;
+            position: relative;
+            z-index: 100;
+            padding-top: 80px;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .path-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .path-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .path-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .path-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .path-content {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin: 0 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .path-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .path-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .path-content h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .path-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .topics-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .topics-list li {
+            background: #f8f9ff;
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .lesson-count {
+            font-size: 0.9rem;
+            color: #666;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Quick Access Tools */
+        .quick-tools {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 80px 0;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .tool-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tool-card h4 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .tool-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Recent Posts */
+        .recent-posts {
+            padding: 80px 0;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .post-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-content h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .post-content p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+/* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #3498db;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .path-item {
+                flex-direction: column !important;
+                text-align: center;
+            }
+
+            .path-content {
+                margin: 1rem 0;
+            }
+
+            .path-icon {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin: 1rem auto;
+            }
+
+            .path-line {
+                display: none;
+            }
+        }
+
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stagger-1 {
+            animation-delay: 0.1s;
+        }
+
+        .stagger-2 {
+            animation-delay: 0.2s;
+        }
+
+        .stagger-3 {
+            animation-delay: 0.3s;
+        }
+
+        .stagger-4 {
+            animation-delay: 0.4s;
+        }
+
+        .stagger-5 {
+            animation-delay: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">DataScienceHub</div>
+            <div class="breadcrumb">
+                <a href="datascience_website.html">Home</a>
+                <span>›</span>
+                <span>Natural Language Processing</span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Natural Language Processing Mastery</h1>
+            <p>Master text analysis, sentiment analysis, transformers, BERT, GPT, and modern language models with
+                comprehensive hands-on tutorials and real-world projects.</p>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">NLP Tutorials</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Text Projects</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">100+</span>
+                    <span class="stat-label">Code Examples</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <section class="learning-path">
+            <div class="container">
+                <h2 class="section-title">NLP Learning Path</h2>
+                <p class="section-subtitle">Master natural language processing from text basics to advanced transformer
+                    models</p>
+
+                <div class="path-container">
+                    <div class="path-line"></div>
+
+                    <div class="path-item fade-in stagger-1">
+                        <div class="path-content" onclick="expandSection('foundations')">
+                            <span class="level-badge">Beginner</span>
+                            <h3>Text Processing Foundations</h3>
+                            <p>Learn the fundamentals of text processing, tokenization, and basic NLP concepts with
+                                practical Python implementations.</p>
+                            <ul class="topics-list">
+                                <li>Text Preprocessing</li>
+                                <li>Tokenization</li>
+                                <li>Stemming & Lemmatization</li>
+                                <li>RegEx for Text</li>
+                                <li>NLTK & spaCy</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>8 Lessons</span>
+                                <span>✅ Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-2">
+                        <div class="path-content" onclick="expandSection('traditional')">
+                            <span class="level-badge">Intermediate</span>
+                            <h3>Traditional NLP Techniques</h3>
+                            <p>Master classical NLP approaches including TF-IDF, word embeddings, and statistical
+                                language models.</p>
+                            <ul class="topics-list">
+                                <li>Bag of Words</li>
+                                <li>TF-IDF</li>
+                                <li>N-grams</li>
+                                <li>Word2Vec</li>
+                                <li>GloVe</li>
+                                <li>FastText</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>10 Lessons</span>
+                                <span>9/12 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-3">
+                        <div class="path-content" onclick="expandSection('applications')">
+                            <span class="level-badge">Intermediate</span>
+                            <h3>NLP Applications</h3>
+                            <p>Build real-world NLP applications including sentiment analysis, text classification, and
+                                information extraction.</p>
+                            <ul class="topics-list">
+                                <li>Sentiment Analysis</li>
+                                <li>Text Classification</li>
+                                <li>Named Entity Recognition</li>
+                                <li>Topic Modeling</li>
+                                <li>Text Summarization</li>
+                                <li>Question Answering</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>12 Lessons</span>
+                                <span>4/12 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-4">
+                        <div class="path-content" onclick="expandSection('transformers')">
+                            <span class="level-badge">Advanced</span>
+                            <h3>Transformers & Modern NLP</h3>
+                            <p>Dive deep into transformer architecture, BERT, GPT, and state-of-the-art language models
+                                for advanced NLP tasks.</p>
+                            <ul class="topics-list">
+                                <li>Transformer Architecture</li>
+                                <li>Attention Mechanisms</li>
+                                <li>BERT & RoBERTa</li>
+                                <li>GPT Models</li>
+                                <li>T5 & BART</li>
+                                <li>Hugging Face</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 20%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>15 Lessons</span>
+                                <span>3/15 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="path-item fade-in stagger-5">
+                        <div class="path-content" onclick="expandSection('advanced')">
+                            <span class="level-badge">Expert</span>
+                            <h3>Advanced Language Models</h3>
+                            <p>Master cutting-edge techniques including fine-tuning, prompt engineering, and deploying
+                                large language models.</p>
+                            <ul class="topics-list">
+                                <li>Model Fine-tuning</li>
+                                <li>Prompt Engineering</li>
+                                <li>Few-shot Learning</li>
+                                <li>Model Deployment</li>
+                                <li>Multilingual NLP</li>
+                                <li>Ethics in NLP</li>
+                            </ul>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                            <div class="lesson-count">
+                                <span>18 Lessons</span>
+                                <span>0/20 Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="quick-tools">
+            <div class="container">
+                <h2 class="section-title">Interactive Tools</h2>
+                <p class="section-subtitle">Hands-on tools to explore and experiment with NLP techniques</p>
+
+                <div class="tools-grid">
+                    <div class="tool-card fade-in stagger-1">
+                        <div class="tool-icon">🔍</div>
+                        <h4>Text Analyzer</h4>
+                        <p>Analyze text for sentiment, entities, keywords, and linguistic patterns with real-time
+                            visualization.</p>
+                        <button class="tool-button" onclick="openTool('analyzer')">Analyze Text</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-2">
+                        <div class="tool-icon">🎭</div>
+                        <h4>Sentiment Detector</h4>
+                        <p>Real-time sentiment analysis using multiple models including BERT, VADER, and custom
+                            classifiers.</p>
+                        <button class="tool-button" onclick="openTool('sentiment')">Try Sentiment Analysis</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-3">
+                        <div class="tool-icon">🏷️</div>
+                        <h4>Entity Extractor</h4>
+                        <p>Extract and visualize named entities, relationships, and key information from any text.</p>
+                        <button class="tool-button" onclick="openTool('entities')">Extract Entities</button>
+                    </div>
+
+                    <div class="tool-card fade-in stagger-4">
+                        <div class="tool-icon">📊</div>
+                        <h4>Model Playground</h4>
+                        <p>Experiment with pre-trained transformers, compare outputs, and fine-tune models
+                            interactively.</p>
+                        <button class="tool-button" onclick="openTool('playground')">Open Playground</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="recent-posts">
+            <div class="container">
+                <h2 class="section-title">Latest NLP Tutorials</h2>
+                <p class="section-subtitle">Stay updated with the newest natural language processing tutorials and
+                    insights</p>
+
+                <div class="posts-grid">
+                    <div class="post-card fade-in stagger-1">
+                        <div class="post-image">
+                            🤖
+                            <div class="post-badge">New</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Fine-tuning BERT for Text Classification</h4>
+                            <p>Step-by-step guide to fine-tuning BERT models for custom text classification tasks with
+                                practical examples and performance optimization.</p>
+                            <div class="post-meta">
+                                <span>Dec 18, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>15 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-card fade-in stagger-2">
+                        <div class="post-image">
+                            💭
+                            <div class="post-badge">Popular</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Building a Chatbot with Transformers</h4>
+                            <p>Create intelligent conversational AI using modern transformer models, attention
+                                mechanisms, and dialog management techniques.</p>
+                            <div class="post-meta">
+                                <span>Dec 12, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>20 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="post-card fade-in stagger-3">
+                        <div class="post-image">
+                            📝
+                            <div class="post-badge">Tutorial</div>
+                        </div>
+                        <div class="post-content">
+                            <h4>Advanced Prompt Engineering Techniques</h4>
+                            <p>Master the art of prompt design for large language models with advanced techniques and
+                                real-world applications.</p>
+                            <div class="post-meta">
+                                <span>Dec 8, 2024</span>
+                                <div class="read-time">
+                                    <span>⏱️</span>
+                                    <span>18 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Machine Learning</a></li>
+                        <li><a href="#">Deep Learning</a></li>
+                        <li><a href="#">Natural Language Processing</a></li>
+                        <li><a href="#">Computer Vision</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                        <li><a href="#">Code Examples</a></li>
+                        <li><a href="#">Datasets</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="#">Model Playground</a></li>
+                        <li><a href="#">Text Analyzer</a></li>
+                        <li><a href="#">Data Visualizer</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="#">Newsletter</a></li>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 DataScienceHub. All rights reserved. | Empowering the next generation of AI
+                    professionals.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Trigger animations when elements come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+        });
+
+        // Section expansion functionality
+        function expandSection(sectionType) {
+            const sections = {
+                'foundations': {
+                    title: 'Text Processing Foundations',
+                    lessons: [
+                        'Introduction to Natural Language Processing',
+                        'Text Data Preprocessing Techniques',
+                        'Tokenization Methods and Best Practices',
+                        'Stemming vs Lemmatization Deep Dive',
+                        'Regular Expressions for Text Processing',
+                        'NLTK Library Comprehensive Guide',
+                        'spaCy for Industrial-Strength NLP',
+                        'Building Your First Text Processing Pipeline'
+                    ]
+                },
+                'traditional': {
+                    title: 'Traditional NLP Techniques',
+                    lessons: [
+                        'Bag of Words Model Implementation',
+                        'TF-IDF: Theory and Application',
+                        'N-gram Language Models',
+                        'Word2Vec: Skip-gram and CBOW',
+                        'GloVe: Global Vectors for Word Representation',
+                        'FastText: Subword Information in Embeddings',
+                        'Comparing Word Embedding Techniques',
+                        'Dimensionality Reduction for Text',
+                        'Cosine Similarity and Text Matching',
+                        'Building a Document Retrieval System'
+                    ]
+                },
+                'applications': {
+                    title: 'NLP Applications',
+                    lessons: [
+                        'Sentiment Analysis with Machine Learning',
+                        'Advanced Text Classification Techniques',
+                        'Named Entity Recognition (NER) Systems',
+                        'Part-of-Speech Tagging Implementation',
+                        'Topic Modeling with LDA and NMF',
+                        'Extractive Text Summarization',
+                        'Abstractive Summarization Techniques',
+                        'Question Answering System Development',
+                        'Information Extraction from Documents',
+                        'Text Similarity and Semantic Search',
+                        'Language Detection and Classification',
+                        'Building a Complete NLP Application'
+                    ]
+                },
+                'transformers': {
+                    title: 'Transformers & Modern NLP',
+                    lessons: [
+                        'Understanding Transformer Architecture',
+                        'Attention Mechanisms Explained',
+                        'Self-Attention and Multi-Head Attention',
+                        'BERT: Bidirectional Encoder Representations',
+                        'GPT: Generative Pre-trained Transformers',
+                        'RoBERTa: Robustly Optimized BERT',
+                        'T5: Text-to-Text Transfer Transformer',
+                        'BART: Denoising Autoencoder',
+                        'Hugging Face Transformers Library',
+                        'Fine-tuning Pre-trained Models',
+                        'Transfer Learning for NLP Tasks',
+                        'Model Evaluation and Benchmarking',
+                        'Handling Long Sequences in Transformers',
+                        'Cross-lingual Transfer Learning',
+                        'Model Compression and Optimization'
+                    ]
+                },
+                'advanced': {
+                    title: 'Advanced Language Models',
+                    lessons: [
+                        'Large Language Model Architecture',
+                        'Prompt Engineering Best Practices',
+                        'Few-shot and Zero-shot Learning',
+                        'In-context Learning Techniques',
+                        'Model Fine-tuning Strategies',
+                        'Parameter-Efficient Fine-tuning',
+                        'Model Deployment and Scaling',
+                        'API Integration and Usage',
+                        'Multilingual NLP Applications',
+                        'Cross-lingual Model Training',
+                        'Bias Detection in Language Models',
+                        'Ethical AI and Responsible NLP',
+                        'Model Interpretability',
+                        'Performance Optimization',
+                        'Real-world Production Systems',
+                        'Monitoring and Maintenance',
+                        'Custom Tokenizer Development',
+                        'Advanced Evaluation Metrics'
+                    ]
+                }
+            };
+
+            const section = sections[sectionType];
+            if (section) {
+                // Create modal content
+                const modal = document.createElement('div');
+                modal.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+                    background: rgba(0,0,0,0.8); z-index: 2000; display: flex; 
+                    align-items: center; justify-content: center; backdrop-filter: blur(5px);
+                `;
+
+                const modalContent = document.createElement('div');
+                modalContent.style.cssText = `
+                    background: white; border-radius: 20px; max-width: 600px; 
+                    max-height: 80vh; overflow-y: auto; padding: 2rem; margin: 1rem;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                `;
+
+                modalContent.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.8rem; color: #333; background: linear-gradient(45deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">${section.title}</h3>
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="color: #666; margin-bottom: 1rem;">Complete lesson breakdown:</p>
+                        <div style="max-height: 300px; overflow-y: auto;">
+                            ${section.lessons.map((lesson, index) => `
+                                <div style="display: flex; align-items: center; padding: 0.8rem; margin-bottom: 0.5rem; background: #f8f9ff; border-radius: 10px; cursor: pointer; transition: all 0.3s ease;" 
+                                     onmouseover="this.style.background='#e9ecff'" 
+                                     onmouseout="this.style.background='#f8f9ff'"
+                                     onclick="startLesson('${sectionType}', ${index})">
+                                    <span style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; width: 25px; height: 25px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-right: 1rem;">${index + 1}</span>
+                                    <span style="color: #333; flex: 1;">${lesson}</span>
+                                    <span style="color: #999; font-size: 0.9rem;">📖</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <button onclick="startSection('${sectionType}')" style="background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-right: 1rem;">Start Section</button>
+                        <button onclick="this.closest('.modal').remove()" style="background: transparent; color: #667eea; border: 2px solid #667eea; padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">Close</button>
+                    </div>
+                `;
+
+                modal.className = 'modal';
+                modal.appendChild(modalContent);
+                document.body.appendChild(modal);
+
+                // Close modal on backdrop click
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+            }
+
+        }
+
+        // Tool functionality
+        function openTool(toolType) {
+            const tools = {
+                'analyzer': '/tools/text-analyzer',
+                'sentiment': '/tools/sentiment-analysis',
+                'entities': '/tools/entity-extraction',
+                'playground': '/tools/model-playground'
+            };
+
+            // Open in new tab or modal
+            window.open(tools[toolType], '_blank');
+        }
+
+        // Start lesson functionality
+        function startLesson(sectionType, lessonIndex) {
+            showNotification(`Starting lesson ${lessonIndex + 1} in ${sectionType} section...`, 'info');
+
+            // Close modal
+            document.querySelector('.modal')?.remove();
+
+            // Simulate lesson start
+            setTimeout(() => {
+                showNotification('Lesson loaded! Ready to begin.', 'success');
+            }, 1000);
+        }
+
+        // Start section functionality
+        function startSection(sectionType) {
+            showNotification(`Starting ${sectionType} section from the beginning...`, 'info');
+
+            // Close modal
+            document.querySelector('.modal')?.remove();
+
+            // Update progress (simulate)
+            setTimeout(() => {
+                showNotification('Section started! Check your progress above.', 'success');
+            }, 1000);
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 3000;
+                background: ${type === 'success' ? 'linear-gradient(45deg, #4CAF50, #45a049)' :
+                    type === 'error' ? 'linear-gradient(45deg, #f44336, #da190b)' :
+                        'linear-gradient(45deg, #667eea, #764ba2)'};
+                color: white; padding: 1rem 1.5rem; border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                transform: translateX(100%); transition: all 0.5s ease;
+                max-width: 300px; font-weight: 500;
+            `;
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 3000);
+        }
+
+        // Smooth scrolling for internal links
+        document.addEventListener('click', function (e) {
+            if (e.target.tagName === 'A' && e.target.getAttribute('href')?.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(e.target.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+
+        // Progress bar animation on scroll
+        window.addEventListener('scroll', function () {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    bar.style.transition = 'width 2s ease';
+                }
+            });
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.path-content, .tool-card, .post-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = this.classList.contains('path-content') ? 'translateY(-5px)' :
+                    this.classList.contains('tool-card') ? 'translateY(-10px)' : 'translateY(-5px)';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+
+</html>
