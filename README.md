@@ -7,7 +7,7 @@ Each lesson is indexed both **globally** (out of total lessons) and **within its
 
 ## 🚀 Roadmap Overview  
 
-### 1️⃣ Machine Learning (65 lessons)  
+### 1️⃣ [!Machine Learning](https://github.com/FaresElmenshawi/ML-Algorithm-Implementation.git) (65 lessons)  
 - Foundations (8 lessons)  
 - Supervised Learning (12 lessons)  
 - Unsupervised Learning (10 lessons)  
