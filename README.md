@@ -278,3 +278,9 @@ Each lesson is indexed both **globally** (out of total lessons) and **within its
 - **NLP:** 67  
 
 ---
+
+
+
+
+# Resources:
+[Questions and Answers](https://www.appliedaicourse.com/blog/)
