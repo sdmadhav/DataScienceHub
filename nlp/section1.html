@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Text Processing Foundations - Master the fundamentals of NLP with hands-on lessons and practical examples.">
+    <title>Text Processing Foundations - DataScienceHub</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.75rem 0;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #764ba2;
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .progress-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: conic-gradient(#667eea 12.5%, #e9ecef 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Main Layout */
+        .main-layout {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: calc(100vh - 80px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+            z-index: 999;
+        }
+
+        .sidebar.minimized {
+            width: 60px;
+        }
+
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar.minimized .sidebar-header {
+            padding: 1rem;
+            justify-content: center;
+        }
+
+        .section-info {
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar.minimized .section-info {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.3rem;
+        }
+
+        .section-progress {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .sidebar-toggle {
+            background: #f8f9ff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            background: #e9ecff;
+            transform: scale(1.1);
+        }
+
+        /* Lessons List */
+        .lessons-container {
+            padding: 0;
+        }
+
+        .lesson-group {
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .lesson {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            background: white;
+            width: 100%;
+            text-align: left;
+        }
+
+        .lesson:hover {
+            background: #f8f9ff;
+        }
+
+        .lesson.active {
+            background: linear-gradient(90deg, #f8f9ff, #e9ecff);
+            border-right: 3px solid #667eea;
+        }
+
+        .lesson.completed {
+            background: #f0fff4;
+        }
+
+        .lesson-indicator {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .lesson.completed .lesson-indicator {
+            background: #10b981;
+            color: white;
+        }
+
+        .lesson.active .lesson-indicator {
+            background: #667eea;
+            color: white;
+        }
+
+        .lesson:not(.completed):not(.active) .lesson-indicator {
+            background: #e9ecef;
+            color: #666;
+        }
+
+        .lesson-info {
+            flex: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .sidebar.minimized .lesson-info {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .lesson-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.2rem;
+        }
+
+        .lesson-meta {
+            font-size: 0.75rem;
+            color: #999;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            background: white;
+            margin: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-header {
+            padding: 2rem 2rem 1rem;
+            background: linear-gradient(135deg, #f8f9ff, #e9ecff);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .content-subtitle {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-meta-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .content-body {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .lesson-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .lesson-section {
+            margin-bottom: 2rem;
+        }
+
+        .lesson-section h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .lesson-section p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 4px solid #f39c12;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, #d1ecf1, #bee5eb);
+            border-left: 4px solid #17a2b8;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Navigation */
+        .lesson-navigation {
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-button {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-button:disabled {
+            background: #e9ecef;
+            color: #999;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .lesson-progress-bar {
+            flex: 1;
+            margin: 0 2rem;
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 12.5%;
+        }
+
+        /* Mobile Sidebar Overlay */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: #f8f9ff;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .sidebar {
+                position: fixed;
+                top: 80px;
+                left: -320px;
+                z-index: 999;
+                transition: left 0.3s ease;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main-layout {
+                padding: 0;
+            }
+
+            .content-area {
+                margin: 0.5rem;
+            }
+
+            .content-header {
+                padding: 1.5rem 1rem 1rem;
+            }
+
+            .content-body {
+                padding: 1rem;
+            }
+
+            .content-title {
+                font-size: 1.6rem;
+            }
+
+            .lesson-meta-info {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                padding: 0 0.5rem;
+            }
+
+            .breadcrumb {
+                display: none;
+            }
+
+            .progress-indicator {
+                font-size: 0.8rem;
+            }
+
+            .progress-circle {
+                width: 32px;
+                height: 32px;
+                font-size: 0.7rem;
+            }
+
+            .content-area {
+                margin: 0;
+                border-radius: 0;
+            }
+
+            .content-header {
+                padding: 1rem;
+            }
+
+            .content-title {
+                font-size: 1.4rem;
+            }
+
+            .content-subtitle {
+                font-size: 1rem;
+            }
+
+            .lesson-navigation {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .lesson-progress-bar {
+                order: -1;
+                margin: 0;
+                width: 100%;
+            }
+
+            .nav-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 280px;
+                left: -280px;
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .lesson {
+                padding: 0.8rem 1rem;
+            }
+
+            .lesson-title {
+                font-size: 0.85rem;
+            }
+
+            .content-body {
+                padding: 0.5rem;
+            }
+
+            .lesson-section {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-in {
+            transform: translateX(-20px);
+            opacity: 0;
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+                <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+                    ☰
+                </button>
+                <div class="logo">DataScienceHub</div>
+            </div>
+            
+            <div class="breadcrumb">
+                <a href="../nlp.html">NLP</a>
+                <span>›</span>
+                <span>Text Processing Foundations</span>
+            </div>
+
+            <div class="header-controls">
+                <div class="progress-indicator">
+                    <span>1/8 Complete</span>
+                    <div class="progress-circle">
+                        12%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <!-- Main Layout -->
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="section-info">
+                    <div class="section-title">Text Processing Foundations</div>
+                    <div class="section-progress">1 of 8 lessons completed</div>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebarSize()">
+                    <span id="toggleIcon">‹</span>
+                </button>
+            </div>
+
+            <div class="lessons-container">
+                <div class="lesson-group">
+                    <button class="lesson active" onclick="loadLesson(1)">
+                        <div class="lesson-indicator">1</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Introduction to Natural Language Processing</div>
+                            <div class="lesson-meta">
+                                <span>📖 15 min</span>
+                                <span>🎯 Beginner</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(2)">
+                        <div class="lesson-indicator">2</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Text Data Preprocessing Techniques</div>
+                            <div class="lesson-meta">
+                                <span>📖 20 min</span>
+                                <span>🎯 Beginner</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(3)">
+                        <div class="lesson-indicator">3</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Tokenization Methods and Best Practices</div>
+                            <div class="lesson-meta">
+                                <span>📖 25 min</span>
+                                <span>🎯 Beginner</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(4)">
+                        <div class="lesson-indicator">4</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Stemming vs Lemmatization Deep Dive</div>
+                            <div class="lesson-meta">
+                                <span>📖 18 min</span>
+                                <span>🎯 Intermediate</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(5)">
+                        <div class="lesson-indicator">5</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Regular Expressions for Text Processing</div>
+                            <div class="lesson-meta">
+                                <span>📖 22 min</span>
+                                <span>🎯 Intermediate</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(6)">
+                        <div class="lesson-indicator">6</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">NLTK Library Comprehensive Guide</div>
+                            <div class="lesson-meta">
+                                <span>📖 30 min</span>
+                                <span>🎯 Intermediate</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(7)">
+                        <div class="lesson-indicator">7</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">spaCy for Industrial-Strength NLP</div>
+                            <div class="lesson-meta">
+                                <span>📖 35 min</span>
+                                <span>🎯 Advanced</span>
+                            </div>
+                        </div>
+                    </button>
+
+                    <button class="lesson" onclick="loadLesson(8)">
+                        <div class="lesson-indicator">8</div>
+                        <div class="lesson-info">
+                            <div class="lesson-title">Building Your First Text Processing Pipeline</div>
+                            <div class="lesson-meta">
+                                <span>📖 40 min</span>
+                                <span>🎯 Advanced</span>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="content-area">
+            <div class="content-header">
+                <h1 class="content-title">Introduction to Natural Language Processing</h1>
+                <p class="content-subtitle">Discover the fundamentals of NLP and understand how computers process human language</p>
+                
+                <div class="lesson-meta-info">
+                    <div class="meta-item">
+                        <span>📖</span>
+                        <span>15 minutes</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>🎯</span>
+                        <span>Beginner Level</span>
+                    </div>
+                    <div class="meta-item">
+                        <span>📚</span>
+                        <span>Lesson 1 of 8</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-body">
+                <div class="lesson-content fade-in">
+                    <div class="lesson-section">
+                        <h3>What is Natural Language Processing?</h3>
+                        <p>
+                            Natural Language Processing (NLP) is a subfield of artificial intelligence that focuses on the interaction between computers and humans through natural language. The ultimate goal of NLP is to enable computers to understand, interpret, and generate human language in a valuable way.
+                        </p>
+                        <p>
+                            NLP combines computational linguistics—rule-based modeling of human language—with statistical, machine learning, and deep learning models. These technologies enable computers to process human language in the form of text or voice data and understand its full meaning, complete with the speaker's or writer's intent and sentiment.
+                        </p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <strong>Key Insight:</strong> NLP bridges the gap between human communication and computer understanding, enabling machines to process and respond to text and speech in a way that is both meaningful and useful.
+                    </div>
+
+                    <div class="lesson-section">
+                        <h3>Why is NLP Important?</h3>
+                        <p>
+                            In today's digital world, NLP has become increasingly important for several reasons:
+                        </p>
+                        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                            <li><strong>Data Volume:</strong> Enormous amounts of text data are generated daily through emails, social media, news articles, and documents.</li>
+                            <li><strong>Automation:</strong> Businesses need to automate the processing of text data for efficiency and scalability.</li>
+                            <li><strong>User Experience:</strong> Natural language interfaces make technology more accessible to users.</li>
+                            <li><strong>Insights:</strong> Text analysis can reveal valuable patterns and insights from unstructured data.</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h3>Common NLP Applications</h3>
+                        <p>
+                            NLP powers many applications you use every day:
+                        </p>
+                        <div class="code-block">
+# Examples of NLP in Daily Life:
+
+1. Virtual Assistants (Siri, Alexa, Google Assistant)
+2. Language Translation (Google Translate)
+3. Email Spam Detection
+4. Sentiment Analysis on Social Media
+5. Chatbots and Customer Service
+6. Search Engine Optimization
+7. Text Summarization
+8. Voice Recognition Systems
+                        </div>
+                    </div>
+
+                    <div class="tip-box">
+                        <strong>Pro Tip:</strong> Start by identifying NLP applications in your daily life. This will help you understand the practical impact and potential of NLP technologies.
+                    </div>
+
+                    <div class="lesson-section">
+                        <h3>Core NLP Tasks</h3>
+                        <p>
+                            NLP encompasses various tasks, each with its own challenges and applications:
+                        </p>
+                        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                            <li><strong>Tokenization:</strong> Breaking text into individual words or tokens</li>
+                            <li><strong>Part-of-Speech Tagging:</strong> Identifying grammatical roles of words</li>
+                            <li><strong>Named Entity Recognition:</strong> Identifying and classifying entities like names, dates, locations</li>
+                            <li><strong>Sentiment Analysis:</strong> Determining emotional tone of text</li>
+                            <li><strong>Machine Translation:</strong> Converting text from one language to another</li>
+                            <li><strong>Question Answering:</strong> Providing answers to natural language questions</li>
+                        </ul>
+                    </div>
+
+                    <div class="lesson-section">
+                        <h3>Challenges in NLP</h3>
+                        <p>
+                            Processing human language comes with unique challenges:
+                        </p>
+                        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
+                            <li><strong>Ambiguity:</strong> Words can have multiple meanings depending on context</li>
+                            <li><strong>Context Dependency:</strong> Meaning often depends on surrounding text</li>
+                            <li><strong>Variability:</strong> Language evolves and varies across regions, cultures, and individuals</li>
+                            <li><strong>Implicit Meaning:</strong> Much communication relies on implied rather than explicit information</li>
+                        </ul>
+                    </div>
+
+                    <div class="highlight-box">
+                        <strong>Next Steps:</strong> In the upcoming lessons, we'll dive deep into text preprocessing techniques that form the foundation of all NLP applications. You'll learn hands-on methods to clean, normalize, and prepare text data for analysis.
+                    </div>
+                </div>
+            </div>
+
+            <nav class="lesson-navigation">
+                <button class="nav-button" disabled>
+                    ← Previous Lesson
+                </button>
+
+                <div class="lesson-progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+
+                <button class="nav-button" onclick="nextLesson()">
+                    Next Lesson →
+                </button>
+            </nav>
+        </main>
+    </div>
+
+    <script>
+        let currentLesson = 1;
+        const totalLessons = 8;
+
+        // Sidebar functionality
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function toggleSidebarSize() {
+            const sidebar = document.getElementById('sidebar');
+            const icon = document.getElementById('toggleIcon');
+            
+            if (window.innerWidth > 1024) {
+                sidebar.classList.toggle('minimized');
+                icon.textContent = sidebar.classList.contains('minimized') ? '›' : '‹';
+            }
+        }
+
+        // Lesson navigation
+        function loadLesson(lessonNumber) {
+            // Remove active class from all lessons
+            document.querySelectorAll('.lesson').forEach(lesson => {
+                lesson.classList.remove('active');
+            });
+
+            // Add active class to selected lesson
+            document.querySelectorAll('.lesson')[lessonNumber - 1].classList.add('active');
+
+            // Mark previous lessons as completed
+            document.querySelectorAll('.lesson').forEach((lesson, index) => {
+                if (index < lessonNumber - 1) {
+                    lesson.classList.add('completed');
+                    lesson.querySelector('.lesson-indicator').innerHTML = '✓';
+                } else if (index === lessonNumber - 1) {
+                    lesson.classList.remove('completed');
+                    lesson.querySelector('.lesson-indicator').innerHTML = lessonNumber;
+                } else {
+                    lesson.classList.remove('completed');
+                    lesson.querySelector('.lesson-indicator').innerHTML = index + 1;
+                }
+            });
+
+            currentLesson = lessonNumber;
+            updateProgress();
+            updateNavigationButtons();
+            
+            // Close sidebar on mobile after selection
+            if (window.innerWidth <= 1024) {
+                toggleSidebar();
+            }
+
+            // Simulate content loading (you'll replace this with actual content)
+            showNotification(`Loading Lesson ${lessonNumber}...`, 'info');
+            setTimeout(() => {
+                showNotification(`Lesson ${lessonNumber} loaded successfully!`, 'success');
+            }, 1000);
+        }
+
+        function nextLesson() {
+            if (currentLesson < totalLessons) {
+                loadLesson(currentLesson + 1);
+            }
+        }
+
+        function previousLesson() {
+            if (currentLesson > 1) {
+                loadLesson(currentLesson - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progressPercent = (currentLesson / totalLessons) * 100;
+            
+            // Update header progress
+            document.querySelector('.progress-circle').textContent = Math.round(progressPercent) + '%';
+            document.querySelector('.progress-indicator span').textContent = `${currentLesson}/${totalLessons} Complete`;
+            
+            // Update sidebar progress
+            document.querySelector('.section-progress').textContent = `${currentLesson} of ${totalLessons} lessons completed`;
+            
+            // Update lesson progress bar
+            document.querySelector('.progress-fill').style.width = progressPercent + '%';
+            
+            // Update progress circle conic gradient
+            document.querySelector('.progress-circle').style.background = 
+                `conic-gradient(#667eea ${progressPercent}%, #e9ecef 0)`;
+        }
+
+        function updateNavigationButtons() {
+            const prevButton = document.querySelector('.lesson-navigation .nav-button:first-child');
+            const nextButton = document.querySelector('.lesson-navigation .nav-button:last-child');
+            
+            // Update previous button
+            if (currentLesson === 1) {
+                prevButton.disabled = true;
+                prevButton.textContent = '← Previous Lesson';
+            } else {
+                prevButton.disabled = false;
+                prevButton.textContent = '← Previous Lesson';
+                prevButton.onclick = previousLesson;
+            }
+            
+            // Update next button
+            if (currentLesson === totalLessons) {
+                nextButton.textContent = 'Complete Section →';
+                nextButton.onclick = completeSection;
+            } else {
+                nextButton.textContent = 'Next Lesson →';
+                nextButton.onclick = nextLesson;
+            }
+        }
+
+        function completeSection() {
+            showNotification('Congratulations! Section completed successfully!', 'success');
+            setTimeout(() => {
+                // Redirect to next section or main NLP page
+                window.location.href = '../nlp.html';
+            }, 2000);
+        }
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed; top: 20px; right: 20px; z-index: 3000;
+                background: ${type === 'success' ? 'linear-gradient(45deg, #4CAF50, #45a049)' :
+                    type === 'error' ? 'linear-gradient(45deg, #f44336, #da190b)' :
+                        'linear-gradient(45deg, #667eea, #764ba2)'};
+                color: white; padding: 1rem 1.5rem; border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                transform: translateX(100%); transition: all 0.5s ease;
+                max-width: 300px; font-weight: 500;
+            `;
+
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            // Animate in
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+
+            // Animate out and remove
+            setTimeout(() => {
+                notification.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    notification.remove();
+                }, 500);
+            }, 3000);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft' && currentLesson > 1) {
+                previousLesson();
+            } else if (e.key === 'ArrowRight' && currentLesson < totalLessons) {
+                nextLesson();
+            } else if (e.key === 'Escape' && window.innerWidth <= 1024) {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar.classList.contains('active')) {
+                    toggleSidebar();
+                }
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            if (window.innerWidth > 1024) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+            } else {
+                sidebar.classList.remove('minimized');
+                document.getElementById('toggleIcon').textContent = '‹';
+            }
+        });
+
+        // Auto-save progress to localStorage (if available)
+        function saveProgress() {
+            try {
+                const progressData = {
+                    section: 1,
+                    currentLesson: currentLesson,
+                    completedLessons: Array.from(document.querySelectorAll('.lesson.completed')).map(lesson => {
+                        return Array.from(document.querySelectorAll('.lesson')).indexOf(lesson) + 1;
+                    }),
+                    timestamp: Date.now()
+                };
+                localStorage.setItem('nlp_section1_progress', JSON.stringify(progressData));
+            } catch (e) {
+                // localStorage not available, continue without saving
+                console.log('Progress saving not available');
+            }
+        }
+
+        // Load saved progress
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem('nlp_section1_progress');
+                if (saved) {
+                    const progressData = JSON.parse(saved);
+                    
+                    // Restore completed lessons
+                    progressData.completedLessons.forEach(lessonNum => {
+                        const lesson = document.querySelectorAll('.lesson')[lessonNum - 1];
+                        if (lesson && lessonNum < currentLesson) {
+                            lesson.classList.add('completed');
+                            lesson.querySelector('.lesson-indicator').innerHTML = '✓';
+                        }
+                    });
+                    
+                    showNotification('Progress restored from previous session', 'info');
+                }
+            } catch (e) {
+                // No saved progress or error loading
+                console.log('No previous progress found');
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            updateProgress();
+            updateNavigationButtons();
+            
+            // Add scroll behavior to content area
+            const contentBody = document.querySelector('.content-body');
+            contentBody.addEventListener('scroll', function() {
+                const scrollPercent = (contentBody.scrollTop / (contentBody.scrollHeight - contentBody.clientHeight)) * 100;
+                if (scrollPercent > 80) {
+                    // User has scrolled through most of the content
+                    saveProgress();
+                }
+            });
+
+            // Initialize animations with intersection observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in, .slide-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+                observer.observe(el);
+            });
+
+            // Add smooth scrolling to lesson content sections
+            document.querySelectorAll('.lesson-section h3').forEach(heading => {
+                heading.style.cursor = 'pointer';
+                heading.addEventListener('click', function() {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                });
+            });
+        });
+
+        // Add reading time estimation
+        function estimateReadingTime() {
+            const content = document.querySelector('.lesson-content');
+            const text = content.textContent || content.innerText;
+            const wordsPerMinute = 200;
+            const words = text.split(/\s+/).length;
+            const readingTime = Math.ceil(words / wordsPerMinute);
+            return readingTime;
+        }
+
+        // Update reading time dynamically
+        setTimeout(() => {
+            const estimatedTime = estimateReadingTime();
+            const timeElement = document.querySelector('.meta-item span:first-of-type + span');
+            if (timeElement) {
+                timeElement.textContent = `${estimatedTime} minutes`;
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
