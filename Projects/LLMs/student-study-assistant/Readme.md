@@ -29,7 +29,7 @@ The system finds the most relevant passage from a document and generates context
 
 1. Clone the repository:
 ```bash
-git clone [Projects/LLMs/student-study-assistant](https://github.com/sdmadhav/DataScienceHub.git)
+git clone https://github.com/sdmadhav/DataScienceHub.git
 cd DataScienceHub/Projects/LLMs/student-study-assistant
 ```
 
