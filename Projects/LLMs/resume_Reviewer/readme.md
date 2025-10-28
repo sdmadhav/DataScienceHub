@@ -1,4 +1,4 @@
-# 🚀 AI Resume Analyzer - Full Stack Deployment Guide
+# AI Resume Analyzer - Full Stack Deployment Guide
 
 ## 📋 Table of Contents
 1. [Prerequisites](#prerequisites)
