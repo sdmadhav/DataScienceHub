@@ -1,4 +1,6 @@
 # Customer Churn Prediction
+[https://www.codechef.com/practice/course/deep-learning-ai-projects/DLPRJ01/problems/DPLEARN03] 
+[https://claude.ai/chat/b9bf5f6a-3fe8-4087-b174-0700b16499b2]
 
 ## Project Structure
 ```
