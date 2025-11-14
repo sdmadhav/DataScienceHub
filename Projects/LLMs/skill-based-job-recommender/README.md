@@ -1,6 +1,6 @@
 # Skills-Based Job Matching System
 
-![CHECK LIVE PROJECT ON HUGGING_FACE_SPACES🤗](https://huggingface.co/spaces/sdmadhav/skill-based-job-recommender)
+[CHECK LIVE PROJECT ON HUGGING_FACE_SPACES🤗](https://huggingface.co/spaces/sdmadhav/skill-based-job-recommender)
 
 A sophisticated job matching system using multi-stage Information Retrieval and Learning-to-Rank techniques. Matches job seekers with relevant positions based on skills, experience, location, salary, and more.
 
