@@ -1,0 +1,13 @@
+streamlit
+pandas
+numpy
+scikit-learn
+rank-bm25
+sentence-transformers
+lightgbm
+spacy
+plotly
+python-Levenshtein
+
+
+# Run after installing: python -m spacy download en_core_web_sm
