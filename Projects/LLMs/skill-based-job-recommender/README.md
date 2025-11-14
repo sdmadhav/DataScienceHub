@@ -2,7 +2,7 @@
 
 A sophisticated job matching system using multi-stage Information Retrieval and Learning-to-Rank techniques. Matches job seekers with relevant positions based on skills, experience, location, salary, and more.
 
-![System Architecture](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![System Architecture](https://img.shields.io/badge/Python-3.11+-blue.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 ## 🎯 Features
