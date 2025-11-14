@@ -30,7 +30,7 @@ A sophisticated job matching system using multi-stage Information Retrieval and 
 
 ## 📋 Requirements
 
-- Python 3.8+
+- Python 3.9+
 - 8GB RAM minimum (16GB recommended for preprocessing)
 - 2GB disk space for data and models
 
